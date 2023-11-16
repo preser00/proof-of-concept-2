@@ -10,7 +10,8 @@ public class GrapplingGun : MonoBehaviour
 
     [Header("Layers Settings:")]
     [SerializeField] private bool grappleToAll = false;
-    [SerializeField] private int grappableLayerNumber = 9;
+    [SerializeField] private int grappableLayerNumber1 = 9;
+    [SerializeField] private int grappableLayerNumber2 = 8;
 
     [Header("Main Camera:")]
     public Camera m_camera;
@@ -19,6 +20,7 @@ public class GrapplingGun : MonoBehaviour
     public Transform gunHolder;
     public Transform gunPivot;
     public Transform firePoint;
+    public Transform reticlePoint;
 
     [Header("Physics Ref:")]
     public SpringJoint2D m_springJoint2D;
@@ -26,6 +28,7 @@ public class GrapplingGun : MonoBehaviour
 
     [Header("Object Ref:")]
     public GameObject m_reticle;
+    
 
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;
@@ -51,12 +54,19 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private float targetDistance = 3;
     [SerializeField] private float targetFrequncy = 1;
 
+    [Header("Reeling:")]
+    [SerializeField] private bool reelToPlayer= false;
+    [SerializeField] private float reelSpeed = 1;
+    
+
     [Header("Button of Fire")]
     public KeyCode keyCode;
 
     [HideInInspector] public Vector2 grapplePoint;
     [HideInInspector] public Vector2 grappleDistanceVector;
-
+    [HideInInspector] public GameObject grappleVictim;
+    [HideInInspector] public Transform victimPoint;
+    [HideInInspector] bool keepReeling = true;
     private void Start()
     {
 
@@ -81,6 +91,7 @@ public class GrapplingGun : MonoBehaviour
             else
             {
                 Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+              
                 RotateGun(mousePos, true);
             }
 
@@ -93,6 +104,15 @@ public class GrapplingGun : MonoBehaviour
                     gunHolder.position = Vector2.Lerp(gunHolder.position, targetPos, Time.deltaTime * launchSpeed);
                 }
             }
+
+            if(reelToPlayer && grappleRope.isGrappling && keepReeling && grappleVictim.layer == 8)
+            {
+                Vector2 firePointDistnace = firePoint.position - gunHolder.localPosition;
+                Vector2 targetPos = grapplePoint - firePointDistnace;
+                victimPoint.position = Vector2.Lerp(victimPoint.position, targetPos, Time.deltaTime * reelSpeed);               
+                SetGrapplePoint();
+
+            }
         }
         else if (Input.GetKeyUp(keyCode))
         {
@@ -100,6 +120,7 @@ public class GrapplingGun : MonoBehaviour
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
             m_reticle.SetActive(true);
+            keepReeling = true;
         }
         else
         {
@@ -121,9 +142,30 @@ public class GrapplingGun : MonoBehaviour
         {
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+        //SetAimPoint();
     }
 
     void SetGrapplePoint()
+    {
+        Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+        if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
+        {
+            RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
+            if (_hit.transform.gameObject.layer == grappableLayerNumber1|| _hit.transform.gameObject.layer == grappableLayerNumber2 || grappleToAll)
+            {
+                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
+                {
+                    grapplePoint = _hit.point;
+                    grappleVictim = _hit.transform.gameObject;
+                    victimPoint = grappleVictim.transform;
+                    grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+                    grappleRope.enabled = true;
+                }
+            }
+        }
+    }
+
+    /*void SetAimPoint() //exactly the same as SetGrapplePoint but use at the end of RotateGun method to determine reticle position
     {
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
         if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
@@ -133,23 +175,21 @@ public class GrapplingGun : MonoBehaviour
             {
                 if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
                 {
-                    grapplePoint = _hit.point;
-                    grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                    grappleRope.enabled = true;
+                    reticlePoint.position = _hit.point;              
                 }
             }
         }
-    }
+    }*/
 
     public void Grapple()
     {
         m_springJoint2D.autoConfigureDistance = false;
-        if (!launchToPoint && !autoConfigureDistance)
+        if (!launchToPoint && !autoConfigureDistance && !reelToPlayer)
         {
             m_springJoint2D.distance = targetDistance;
             m_springJoint2D.frequency = targetFrequncy;
         }
-        if (!launchToPoint)
+        if (!launchToPoint && !reelToPlayer)
         {
             if (autoConfigureDistance)
             {
@@ -160,7 +200,7 @@ public class GrapplingGun : MonoBehaviour
             m_springJoint2D.connectedAnchor = grapplePoint;
             m_springJoint2D.enabled = true;
         }
-        else
+        else if(!reelToPlayer)
         {
             switch (launchType)
             {
@@ -179,6 +219,11 @@ public class GrapplingGun : MonoBehaviour
                     break;
             }
         }
+        
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        keepReeling = false;
     }
 
     private void OnDrawGizmosSelected()

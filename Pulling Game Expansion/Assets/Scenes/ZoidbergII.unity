@@ -727,6 +727,7 @@ GameObject:
   - component: {fileID: 385787455}
   - component: {fileID: 385787454}
   - component: {fileID: 385787453}
+  - component: {fileID: 385787456}
   m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -808,6 +809,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &385787456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385787452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63f96878a2353c42b0302699a409b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: 0}
+  limitLeft: 0
+  limitRight: 0
+  limitBottom: 0
+  limitTop: 0
 --- !u!1 &466757340
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,8 +935,9 @@ GameObject:
   - component: {fileID: 783451718}
   - component: {fileID: 783451717}
   - component: {fileID: 783451716}
-  m_Layer: 9
-  m_Name: Platform2
+  - component: {fileID: 783451719}
+  m_Layer: 8
+  m_Name: Pullable platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1034,6 +1055,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!50 &783451719
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783451715}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &891535496
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,7 +1097,7 @@ GameObject:
   - component: {fileID: 891535501}
   m_Layer: 10
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1287,11 +1335,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 1818618803}
   grappleToAll: 0
-  grappableLayerNumber: 9
+  grappableLayerNumber1: 9
+  grappableLayerNumber2: 8
   m_camera: {fileID: 385787454}
   gunHolder: {fileID: 891535498}
   gunPivot: {fileID: 466757341}
   firePoint: {fileID: 2104374749}
+  reticlePoint: {fileID: 1773716392}
   m_springJoint2D: {fileID: 891535499}
   m_rigidbody: {fileID: 891535500}
   m_reticle: {fileID: 1773716390}
@@ -1305,9 +1355,13 @@ MonoBehaviour:
   autoConfigureDistance: 1
   targetDistance: 4
   targetFrequncy: 1
+  reelToPlayer: 1
+  reelSpeed: 1
   keyCode: 324
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
+  grappleVictim: {fileID: 0}
+  victimPoint: {fileID: 0}
 --- !u!212 &1479110149
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1461,11 +1515,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 103452265}
   grappleToAll: 0
-  grappableLayerNumber: 9
+  grappableLayerNumber1: 9
+  grappableLayerNumber2: 8
   m_camera: {fileID: 385787454}
   gunHolder: {fileID: 891535498}
   gunPivot: {fileID: 973969027}
   firePoint: {fileID: 2027068716}
+  reticlePoint: {fileID: 65674816}
   m_springJoint2D: {fileID: 891535499}
   m_rigidbody: {fileID: 891535500}
   m_reticle: {fileID: 65674815}
@@ -1479,9 +1535,13 @@ MonoBehaviour:
   autoConfigureDistance: 0
   targetDistance: 5
   targetFrequncy: 1
+  reelToPlayer: 0
+  reelSpeed: 1
   keyCode: 323
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
+  grappleVictim: {fileID: 0}
+  victimPoint: {fileID: 0}
 --- !u!1 &1757187469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1971,5 +2031,5 @@ SceneRoots:
   - {fileID: 1757187471}
   - {fileID: 891535498}
   - {fileID: 261985767}
-  - {fileID: 783451718}
   - {fileID: 371016527}
+  - {fileID: 783451718}
