@@ -11,11 +11,14 @@ public class GameManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
-    public GameObject[] roomPositions;
+    private GameObject _player;
 
     //score display takes place in ui obj
-    public static int collected = 0;  
-    public static int timePassed = 0; 
+    public static int distanceClimbed = 0;
+    public int highestDistanceClimbed = 0; 
+
+    public GameObject[] roomPositions;
+ 
 
     private void Start()
     {
@@ -23,6 +26,7 @@ public class GameManager : MonoBehaviour
 
         _cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         _audioSource = gameObject.GetComponent<AudioSource>();
+        _player = GameObject.FindGameObjectWithTag("Player"); 
 
         _audioSource.loop = true; 
         _audioSource.Play(); 
@@ -30,21 +34,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-
-        if(collected < 0)
+        if(_player.transform.position.y > highestDistanceClimbed)
         {
-            collected = 0; 
+            distanceClimbed = highestDistanceClimbed + (int)(_player.transform.position.y - highestDistanceClimbed);
+            highestDistanceClimbed = (int)_player.transform.position.y;
         }
-    }
 
-    private void LateUpdate()
-    {
-        Scene currentScene = SceneManager.GetActiveScene();
-        string sceneName = currentScene.name;
-        if (sceneName == "MenuEnd")
-        {
-            Destroy(gameObject); 
-        }
     }
 
     public void CreateNewLevel()
@@ -53,10 +48,10 @@ public class GameManager : MonoBehaviour
         /*_cam.transform.position = blackScreen.transform.position;
         _cam.ChangeTarget(blackScreen);*/
 
-        GameObject[] rooms = GameObject.FindGameObjectsWithTag("Spawner"); 
+        GameObject[] rooms = GameObject.FindGameObjectsWithTag("Spawner");
 
-        for(var i=0; i < rooms.Length; i++)
-        {Destroy(rooms[i]); }
+        for (var i = 0; i < rooms.Length; i++)
+        { Destroy(rooms[i]); }
 
         GameObject exit = GameObject.FindGameObjectWithTag("Exit");
         Destroy(exit);
@@ -73,11 +68,9 @@ public class GameManager : MonoBehaviour
 
         //camera transition from destroyed player to newly gen'd one
         _cam.ChangeTarget(camDistraction);
-        GameObject[] currentPlayer = GameObject.FindGameObjectsWithTag("Player"); 
-        for(var i=0; i<currentPlayer.Length; i++) { Destroy(currentPlayer[i]);  } 
+        GameObject[] currentPlayer = GameObject.FindGameObjectsWithTag("Player");
+        for (var i = 0; i < currentPlayer.Length; i++) { Destroy(currentPlayer[i]); }
 
         currentLevelGen.SetActive(true);
-
-        timePassed++; 
     }
 }
