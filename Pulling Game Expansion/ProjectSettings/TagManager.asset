@@ -7,6 +7,7 @@ TagManager:
   - Boundary
   - Spawner
   - Tile
+  - LevelGenerator
   layers:
   - Default
   - TransparentFX
