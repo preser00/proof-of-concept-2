@@ -18,7 +18,9 @@ public class SuperiorsMovement : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    private GameObject target;
+    private float leftBound;
+    private float rightBound;
+    public float boundNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +28,8 @@ public class SuperiorsMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         waitCounter = waitTime;
         walkCounter = walkTime;
+        leftBound = this.transform.position.x - boundNumber;
+        rightBound = this.transform.position.x + boundNumber;
     }
 
     // Update is called once per frame
@@ -47,9 +51,20 @@ public class SuperiorsMovement : MonoBehaviour
                         rb.velocity = new Vector2(moveSpeed, 0);
                         break;
                 }
+                
+                //if the superior reaches it's bound, turn around and continue walking, but for half the time
+                if(transform.position.x <= leftBound)
+                {
+                WalkDirection = 1;
+                }
+                if (transform.position.x >= rightBound)
+                {
+                WalkDirection = 0;
+                }
 
-                //when walk counter hits 0, NPC stops walking and wait counter is set
-                if (walkCounter < 0)
+
+            //when walk counter hits 0, NPC stops walking and wait counter is set
+            if (walkCounter < 0)
                 {
                     isWalking = false;
                     waitCounter = waitTime;
@@ -72,18 +87,9 @@ public class SuperiorsMovement : MonoBehaviour
 
     public void ChooseDirection()
     {
-        moveSpeed = Random.Range(2, 4);
+        moveSpeed = Random.Range(1, 3);
         WalkDirection = Random.Range(0, 2);
         isWalking = true;
         walkCounter = walkTime;
-    }
-
-    void OnTriggerExit2D(Collider2D other)
-    {
-        if(other.gameObject.tag == "Boundary")
-        {
-            moveSpeed *= -1;
-            walkCounter = walkTime/2;
-        }
     }
 }
