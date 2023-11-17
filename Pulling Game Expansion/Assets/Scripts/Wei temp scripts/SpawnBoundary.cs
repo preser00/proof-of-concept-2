@@ -7,12 +7,14 @@ public class SpawnBoundary : MonoBehaviour
     public LevelGeneration levelGen;
 
     private GameObject _player;
-    private bool _roomSpawned;
+    public bool _roomSpawned;
 
     private void Start()
     {
         _roomSpawned = false; 
-        _player = GameObject.FindGameObjectWithTag("Player"); 
+        _player = GameObject.FindGameObjectWithTag("Player");
+
+        levelGen = GameObject.FindGameObjectWithTag("LevelGenerator").GetComponent<LevelGeneration>(); 
     }
 
     private void Update()
@@ -21,11 +23,13 @@ public class SpawnBoundary : MonoBehaviour
 
             if(_player.transform.position.y > gameObject.transform.position.y)
             {
-                levelGen.CreateNewRoom("above"); 
+                levelGen.CreateNewRoom("above");
+
+                _roomSpawned = true;
             }
 
-            _roomSpawned = true; 
-
         }
+
+        Debug.Log(_roomSpawned); 
     }
 }

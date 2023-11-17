@@ -9,6 +9,7 @@ public class LevelGeneration : MonoBehaviour
 
     public List<Transform> activeRoomPositions;
     public GameObject[] rooms; //index 0 -> Empty, 1 -> N/A ATM
+    public int currentRoomIndex; 
 
     public LayerMask room;
 
@@ -39,12 +40,21 @@ public class LevelGeneration : MonoBehaviour
         }
         else if(aboveOrBelow == "above")
         {
-            Debug.Log("create room above"); 
+            Debug.Log("create room above");
+            Instantiate(rooms[roomType], new Vector3(0, activeRoomPositions[currentRoomIndex].position.y + 17), Quaternion.identity);
+
+            currentRoomIndex++; //so next room uses correct y position
         }
         else
         {
             Debug.Log("room creation failed"); 
         }
+    }
+
+    private void Update()
+    {
+
+        Debug.Log(currentRoomIndex); 
     }
 
     //function setCards_Row()
