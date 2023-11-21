@@ -29,7 +29,5 @@ public class SpawnBoundary : MonoBehaviour
             }
 
         }
-
-        Debug.Log(_roomSpawned); 
     }
 }
