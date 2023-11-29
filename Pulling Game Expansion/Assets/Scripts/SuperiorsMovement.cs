@@ -22,6 +22,8 @@ public class SuperiorsMovement : MonoBehaviour
     private float rightBound;
     public float boundNumber;
 
+    public GameObject GameOver;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +37,18 @@ public class SuperiorsMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(GameOver.activeInHierarchy == true)
+        {
+            moveSpeed = 0;
+        }
+        else if(GameOver.activeInHierarchy == false)
+        {
+            moveSpeed = Random.Range(1, 3);
+        }
+
         //if the NPC is walking
-            if (isWalking)
+        if (isWalking)
             {
                 //walk counter begins to count down
                 walkCounter -= Time.deltaTime;

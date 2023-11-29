@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class SpikeTrap : MonoBehaviour
 {
+
+    public GameObject GameOverUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,8 @@ public class SpikeTrap : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("GameOver");
+            GameOverUI.SetActive(true);
+            //SceneManager.LoadScene("GameOver");
         }
 
         if(col.gameObject.tag == "Superior")
