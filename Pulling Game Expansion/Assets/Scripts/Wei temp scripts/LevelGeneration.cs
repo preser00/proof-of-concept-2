@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //https://www.youtube.com/playlist?list=PLBIb_auVtBwClCk31hwqH0yqrbnE8oI75
@@ -7,9 +9,14 @@ using UnityEngine;
 public class LevelGeneration : MonoBehaviour
 {
 
+    public List<GameObject> activeRooms;
     public List<Transform> activeRoomPositions;
-    public GameObject[] rooms; //index 0 -> Empty, 1 -> N/A ATM
-    public int currentRoomIndex; 
+
+    public GameObject[] roomTypes; //index 0 -> Empty, 1 -> N/A ATM
+
+    public int currentRoomIndex;
+
+    public float roomHeight; //assign in inspector 
 
     public LayerMask room;
 
@@ -17,12 +24,16 @@ public class LevelGeneration : MonoBehaviour
 
     public void Start()
     {
+        //spawn an empty room below so player doesn't fall into void. this is room 0 in activerooms
+        CreateNewRoom("below");
+
         //get the position of the starting room & append it into activeroompos array 
         GameObject startingRoom = GameObject.FindGameObjectWithTag("Spawner");
-        activeRoomPositions.Add(startingRoom.transform);
+        activeRooms.Add(startingRoom); 
+        activeRoomPositions.Add(startingRoom.transform); 
 
-        //spawn an empty room below just so player doesn't fall into a void 
-        CreateNewRoom("below"); 
+        Debug.Log(activeRoomPositions[0]);
+        currentRoomIndex = 0; 
 
     }
 
@@ -30,20 +41,40 @@ public class LevelGeneration : MonoBehaviour
     {
         Debug.Log("create new room");
 
-        int roomType = Random.Range(0, activeRoomPositions.Count);
+        int randRoomType = Random.Range(0, roomTypes.Length);
+
+        Debug.Log("randroomtype = " + randRoomType);
+        Debug.Log("roomtype count = " + roomTypes.Length);
+
+        Debug.Log("active room position # = " + activeRoomPositions.Count); 
+
 
         if(aboveOrBelow == "below") // the only case where i create a room below is at the beginning, so i just use aRP list directly
         {
             Debug.Log("create room below"); 
-            Instantiate(rooms[roomType], new Vector3(0, activeRoomPositions[0].position.y - 17), Quaternion.identity);
-            //rooms[0].GetComponent<Renderer>().bounds.size.y, 0
+            GameObject newRoom = Instantiate(roomTypes[randRoomType], new Vector3(0, activeRoomPositions[0].position.y - roomHeight), Quaternion.identity);
+            
+            activeRooms.Add(newRoom);
+            activeRoomPositions.Add(newRoom.transform);
         }
         else if(aboveOrBelow == "above")
         {
             Debug.Log("create room above");
-            Instantiate(rooms[roomType], new Vector3(0, activeRoomPositions[currentRoomIndex].position.y + 17), Quaternion.identity);
+            GameObject newRoom = Instantiate(roomTypes[randRoomType], new Vector3(0, activeRoomPositions[currentRoomIndex].position.y + roomHeight), Quaternion.identity);
 
-            currentRoomIndex++; //so next room uses correct y position
+            activeRooms.Add(newRoom); 
+            activeRoomPositions.Add(newRoom.transform);
+
+            currentRoomIndex = activeRoomPositions.Count - 1; //so next room uses correct y position
+
+            if(currentRoomIndex >= 5)
+            {
+                Destroy(activeRooms[0]);
+                activeRooms.Remove(activeRooms[0]);
+                activeRoomPositions.Remove(activeRoomPositions[0]);
+
+                currentRoomIndex = activeRoomPositions.Count - 1; 
+            }
         }
         else
         {
@@ -51,11 +82,6 @@ public class LevelGeneration : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-
-        Debug.Log(currentRoomIndex); 
-    }
 
     //function setCards_Row()
     //{
