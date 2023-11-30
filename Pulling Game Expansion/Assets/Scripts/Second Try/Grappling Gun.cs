@@ -126,7 +126,7 @@ public class GrapplingGun : MonoBehaviour
         }
         else if (Input.GetKeyUp(keyCode))
         {
-            grappleRope.enabled = false;
+            grappleRope.enabled = false;           
             m_springJoint2D.connectedBody = null;
             if (launchToPoint) { m_springJoint2D.enabled = false; }   //This IF is added to prevent "losing your grip" when finish using Reeling tongue while grappled         
             m_rigidbody.gravityScale = 1;
