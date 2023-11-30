@@ -19,6 +19,8 @@ public class ReelablePlatform : MonoBehaviour
     void Start()
     {
         m_springJoint2D.enabled = false;
+        grappleGun = GameObject.Find("ReelingTongue").GetComponent<GrapplingGun>();
+        grappleRope = GameObject.Find("ReelingTongue").GetComponentInChildren<GrappleRope>();
     }
 
     // Update is called once per frame
