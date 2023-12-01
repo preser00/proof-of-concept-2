@@ -29,7 +29,11 @@ public class GrapplingGun : MonoBehaviour
     [Header("Object Ref:")]
     public GameObject m_reticle;
     public GameObject anchorReel;
-    
+
+    [Header("Reticle Spr:")]
+    public SpriteRenderer reticleRender;
+    public Sprite onReticle;
+    public Sprite nullReticle;
 
     [Header("Rotation:")]
     [SerializeField] private bool rotateOverTime = true;
@@ -79,6 +83,7 @@ public class GrapplingGun : MonoBehaviour
 
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+        reticleRender = m_reticle.GetComponent<SpriteRenderer>();
 
     }
 
@@ -157,6 +162,7 @@ public class GrapplingGun : MonoBehaviour
         {
             gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
+        SetAimNull();
         //SetAimPoint();
     }
 
@@ -176,15 +182,7 @@ public class GrapplingGun : MonoBehaviour
                     anchorGO.transform.SetParent(grappleVictim.transform);
                     anchorGO.transform.position = grapplePoint;
                     anchorReel = anchorGO;
-                    grapplePoint = anchorGO.transform.position;
-                    /*if(grappleVictim.layer == 8 || grappleVictim.layer == 9)
-                    {
-                        GameObject anchorGO = new GameObject("Anchor Game Object");
-                        anchorGO.transform.SetParent(grappleVictim.transform);
-                        anchorGO.transform.position = grapplePoint;
-                        anchorReel = anchorGO;                       
-                        grapplePoint = anchorGO.transform.position;
-                    }   */
+                    grapplePoint = anchorGO.transform.position;                    
                     victimPoint = grappleVictim.transform;
                     grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                     grappleRope.enabled = true;
@@ -192,7 +190,25 @@ public class GrapplingGun : MonoBehaviour
             }
         }
     }
-
+    void SetAimNull() //use to display the null reticle
+    {
+        Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
+        if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
+        {
+            RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
+            if (_hit.transform.gameObject.layer == grappableLayerNumber1 || _hit.transform.gameObject.layer == grappableLayerNumber2 || grappleToAll)
+            {
+                if (Vector2.Distance(_hit.point, firePoint.position) > maxDistnace)
+                {
+                    reticleRender.sprite = nullReticle;                    
+                }
+                else
+                {
+                    reticleRender.sprite = onReticle;
+                }
+            }
+        }
+    }
     /*void SetAimPoint() //exactly the same as SetGrapplePoint but use at the end of RotateGun method to determine reticle position
     {
         Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
