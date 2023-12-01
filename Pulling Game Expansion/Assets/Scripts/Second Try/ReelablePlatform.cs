@@ -10,10 +10,10 @@ public class ReelablePlatform : MonoBehaviour
 
     [Header("Physics Ref:")]
     public SpringJoint2D m_springJoint2D;
-    public Rigidbody2D m_rigidbody;
+    public Rigidbody2D m_rigidbody;    
 
     [Header("Being Reeled:")]
-    [SerializeField] private bool beingReeled = false;
+    public bool beingReeled = false;
     public float ReelingCoefficient =1f;
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class ReelablePlatform : MonoBehaviour
         }
         if (!beingReeled)
         {
-            Debug.Log(m_rigidbody.velocity);
+            //Debug.Log(m_rigidbody.velocity);
           if(m_rigidbody.velocity != new Vector2(0, 0)) 
           {
                 m_rigidbody.velocity *= 0.99f;

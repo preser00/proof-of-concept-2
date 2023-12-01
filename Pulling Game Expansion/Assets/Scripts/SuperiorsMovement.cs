@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SuperiorsMovement : MonoBehaviour
 {
 
@@ -17,17 +18,18 @@ public class SuperiorsMovement : MonoBehaviour
     private int WalkDirection;
 
     private Rigidbody2D rb;
+    private ReelablePlatform m_reelProperties;
 
     private float leftBound;
     private float rightBound;
     public float boundNumber;
 
-    public GameObject GameOver;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        m_reelProperties = gameObject.GetComponent<ReelablePlatform>();
         waitCounter = waitTime;
         walkCounter = walkTime;
         leftBound = this.transform.position.x - boundNumber;
@@ -38,11 +40,11 @@ public class SuperiorsMovement : MonoBehaviour
     void Update()
     {
 
-        if(GameOver.activeInHierarchy == true)
+        if (GameManager.gameOver)
         {
             moveSpeed = 0;
         }
-        else if(GameOver.activeInHierarchy == false)
+        else
         {
             moveSpeed = Random.Range(1, 3);
         }
@@ -62,17 +64,23 @@ public class SuperiorsMovement : MonoBehaviour
                     case 1:
                         rb.velocity = new Vector2(moveSpeed, 0);
                         break;
+                    case 3:
+                        break;
                 }
                 
                 //if the superior reaches it's bound, turn around and continue walking, but for half the time
-                if(transform.position.x <= leftBound)
-                {
+            if(transform.position.x <= leftBound)
+            {
                 WalkDirection = 1;
-                }
-                if (transform.position.x >= rightBound)
-                {
+            }
+            if (transform.position.x >= rightBound)
+            {
                 WalkDirection = 0;
-                }
+            }
+            if (m_reelProperties.beingReeled)
+            {
+                WalkDirection = 3;
+            }
 
 
             //when walk counter hits 0, NPC stops walking and wait counter is set
@@ -103,5 +111,13 @@ public class SuperiorsMovement : MonoBehaviour
         WalkDirection = Random.Range(0, 2);
         isWalking = true;
         walkCounter = walkTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            GameManager.gameOver = true;
+        }
     }
 }

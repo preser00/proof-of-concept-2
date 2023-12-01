@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
     public int highestDistanceClimbed = 0; 
 
     public GameObject[] roomPositions;
+
+    public static bool gameOver = false;
+    public static int thrashPoint = 0;
  
 
     private void Start()
@@ -40,6 +43,15 @@ public class GameManager : MonoBehaviour
             highestDistanceClimbed = (int)_player.transform.position.y;
         }
 
+        if (gameOver)
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene("JoinTest");
+        }
     }
 
     public void CreateNewLevel()
