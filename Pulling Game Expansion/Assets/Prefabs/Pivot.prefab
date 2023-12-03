@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2537185233101340534}
   - component: {fileID: 1668614555561810339}
   - component: {fileID: 8634248863754626715}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     private GameObject _player;
 
     public Transform target;
-    public float smoothSpeed = 0.125f;
+    public float smoothSpeed = .125f;
     public Vector3 offset;
 
     private Vector3 _velocity = Vector3.zero; //set to 0,0,0
@@ -17,12 +17,15 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
+        //_player = GameObject.FindGameObjectWithTag("Player");
+        //target = _player.transform; 
+
         target = gameObject.transform;
     }
 
     private void Update()
     {
-        if(target == null||transform.gameObject.tag != "Player")
+        if(target == null || target.transform.gameObject.tag != "Player")
         {
             _player = GameObject.FindGameObjectWithTag("Player");
             target.position = new Vector3(target.position.x, _player.transform.position.y, target.position.z);
@@ -39,7 +42,7 @@ public class CameraController : MonoBehaviour
         Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref _velocity, smoothSpeed); //ref = "use velocity"  
 
         //boundary check. clamp on y-axis has been removed
-        transform.position = new Vector3(Mathf.Clamp(smoothedPosition.x, limitLeft, limitRight), smoothedPosition.y, smoothedPosition.z);
+        transform.position = new Vector3(Mathf.Clamp(smoothedPosition.x, limitLeft, limitRight), smoothedPosition.y, -10);
 
     }
 
