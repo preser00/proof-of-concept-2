@@ -509,7 +509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!58 &284566741
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  smoothSpeed: 0.125
+  smoothSpeed: 0.2
   offset: {x: 0, y: 0, z: 0}
   limitLeft: -10
   limitRight: 10
@@ -1945,6 +1945,9 @@ MonoBehaviour:
   m_rigidbody: {fileID: 284566743}
   m_reticle: {fileID: 274906212}
   anchorReel: {fileID: 0}
+  reticleRender: {fileID: 0}
+  onReticle: {fileID: 0}
+  nullReticle: {fileID: 0}
   rotateOverTime: 1
   rotationSpeed: 17.6
   hasMaxDistance: 1
@@ -2232,6 +2235,91 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   doneGenerating: 0
+--- !u!1001 &1086541604
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 235471942864504669, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 608030115}
+    - target: {fileID: 235471942864504669, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: onReticle
+      value: 
+      objectReference: {fileID: 21300000, guid: 65d1de38e7dc6a24baa55244bf2ec332, type: 3}
+    - target: {fileID: 235471942864504669, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: nullReticle
+      value: 
+      objectReference: {fileID: 21300000, guid: be9f8feb8d6355845af5d8397e93347c, type: 3}
+    - target: {fileID: 1992308503955849123, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 608030115}
+    - target: {fileID: 1992308503955849123, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: onReticle
+      value: 
+      objectReference: {fileID: 21300000, guid: 65d1de38e7dc6a24baa55244bf2ec332, type: 3}
+    - target: {fileID: 1992308503955849123, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: nullReticle
+      value: 
+      objectReference: {fileID: 21300000, guid: be9f8feb8d6355845af5d8397e93347c, type: 3}
+    - target: {fileID: 5258063107827525509, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5640732114670296008, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219597801140407405, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_Name
+      value: TestBall2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
 --- !u!1 &1169980546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,7 +3181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1428706620
 Transform:
   m_ObjectHideFlags: 0
@@ -3178,6 +3266,9 @@ MonoBehaviour:
   m_rigidbody: {fileID: 284566743}
   m_reticle: {fileID: 63953637}
   anchorReel: {fileID: 0}
+  reticleRender: {fileID: 0}
+  onReticle: {fileID: 0}
+  nullReticle: {fileID: 0}
   rotateOverTime: 1
   rotationSpeed: 17.6
   hasMaxDistance: 1
@@ -3984,3 +4075,4 @@ SceneRoots:
   - {fileID: 676532844}
   - {fileID: 8152248991418057137}
   - {fileID: 625950325}
+  - {fileID: 1086541604}
