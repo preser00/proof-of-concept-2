@@ -43,6 +43,14 @@ public class GrapplingGun : MonoBehaviour
     [SerializeField] private bool hasMaxDistance = false;
     [SerializeField] private float maxDistnace = 20;
 
+
+    [Header("Audio Refs:")]
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private bool played = false;
+    [SerializeField] private AudioClip vomit;
+    [SerializeField] private AudioClip noVomit;
+
     private enum LaunchType
     {
         Transform_Launch,
@@ -84,6 +92,7 @@ public class GrapplingGun : MonoBehaviour
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
         reticleRender = m_reticle.GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -95,7 +104,7 @@ public class GrapplingGun : MonoBehaviour
             m_reticle.SetActive(false);
         }
         else if (Input.GetKey(keyCode))
-        {           
+        {                  
             if (grappleRope.enabled)
             {
                 RotateGun(grapplePoint, false);
@@ -137,6 +146,7 @@ public class GrapplingGun : MonoBehaviour
             m_rigidbody.gravityScale = 1;
             m_reticle.SetActive(true);
             keepReeling = true;
+            played = false;
             if(anchorReel != null)
             {
                 Destroy(anchorReel);
@@ -186,6 +196,18 @@ public class GrapplingGun : MonoBehaviour
                     victimPoint = grappleVictim.transform;
                     grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
                     grappleRope.enabled = true;
+                    if (!played) //let's make some sound!
+                    {
+                        audioSource.clip = vomit;
+                        audioSource.Play();
+                        played = true;
+                    }
+                }
+                if (!played) //let's make some sound when no target!
+                {
+                    audioSource.clip = noVomit;
+                    audioSource.Play();
+                    played = true;
                 }
             }
         }

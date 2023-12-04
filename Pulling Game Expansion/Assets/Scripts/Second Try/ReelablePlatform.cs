@@ -8,6 +8,10 @@ public class ReelablePlatform : MonoBehaviour
     public GrapplingGun grappleGun;
     public GrappleRope grappleRope;
 
+    [Header("Audio Ref:")]
+    public AudioSource audioSource;
+    private bool played = false;
+
     [Header("Physics Ref:")]
     public SpringJoint2D m_springJoint2D;
     public Rigidbody2D m_rigidbody;    
@@ -19,6 +23,7 @@ public class ReelablePlatform : MonoBehaviour
     void Start()
     {
         m_springJoint2D.enabled = false;
+        audioSource = GetComponent<AudioSource>();
         grappleGun = GameObject.Find("ReelingTongue").GetComponent<GrapplingGun>();
         grappleRope = GameObject.Find("ReelingTongue").GetComponentInChildren<GrappleRope>();
     }
@@ -36,6 +41,12 @@ public class ReelablePlatform : MonoBehaviour
             m_springJoint2D.frequency = grappleGun.reelSpeed / ReelingCoefficient;
             m_springJoint2D.enabled = true;
             beingReeled = true;
+            if (!played)
+            {
+                audioSource.Play();
+                played = true;
+            }
+            
         }
         else
         {
@@ -45,6 +56,8 @@ public class ReelablePlatform : MonoBehaviour
         if (!beingReeled)
         {
             //Debug.Log(m_rigidbody.velocity);
+            audioSource.Pause();
+            played = false;
           if(m_rigidbody.velocity != new Vector2(0, 0)) 
           {
                 m_rigidbody.velocity *= 0.99f;
