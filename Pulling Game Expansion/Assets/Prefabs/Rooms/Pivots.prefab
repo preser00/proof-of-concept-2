@@ -2020,7 +2020,7 @@ PrefabInstance:
     - target: {fileID: 3778114789424463688, guid: 11a80ecaf3ff7c44aa8a843a7ed97f50, type: 3}
       propertyPath: objects.Array.data[0]
       value: 
-      objectReference: {fileID: 5084966854397920563, guid: 6c00c079c329b0946b47727f0605c83b, type: 3}
+      objectReference: {fileID: 3207265907621448231, guid: d3d9b9e15be174647b254b9637a76451, type: 3}
     - target: {fileID: 3778114789424463688, guid: 11a80ecaf3ff7c44aa8a843a7ed97f50, type: 3}
       propertyPath: objects.Array.data[1]
       value: 

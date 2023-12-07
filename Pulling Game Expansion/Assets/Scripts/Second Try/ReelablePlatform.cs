@@ -19,6 +19,8 @@ public class ReelablePlatform : MonoBehaviour
     [Header("Being Reeled:")]
     public bool beingReeled = false;
     public float ReelingCoefficient =1f;
+    //public bool neverReeled = true;
+    //public float lastReeled = 0f;
     // Start is called before the first frame update
     void Start()
     {

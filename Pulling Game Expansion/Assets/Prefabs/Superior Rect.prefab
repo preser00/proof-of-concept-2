@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3774573978115386707}
   - component: {fileID: 7442191502596389120}
-  - component: {fileID: 410439332038570805}
   - component: {fileID: 311719351421252266}
   - component: {fileID: 3409753411432363565}
   - component: {fileID: 7155737175862392493}
@@ -92,51 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &410439332038570805
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3207265907621448231}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.09473896, y: 0.14620066}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 11.22, y: 8.9}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 11.119997, y: 7.166814}
-  m_EdgeRadius: 0
 --- !u!50 &311719351421252266
 Rigidbody2D:
   serializedVersion: 4
@@ -220,10 +174,12 @@ MonoBehaviour:
   walkTime: 5
   waitTime: 1
   m_spriteRenderer: {fileID: 7442191502596389120}
-  m_collider: {fileID: 410439332038570805}
+  m_collider: {fileID: 3914237345758014660}
   m_audioSource: {fileID: 2343111768360207631}
   m_deathClip: {fileID: 8300000, guid: ac56ee3215d6581448e84214b1b95a61, type: 3}
+  m_player: {fileID: 0}
   boundNumber: 4
+  maxOffScreenDistance: 2
 --- !u!82 &-1320150160218176594
 AudioSource:
   m_ObjectHideFlags: 0
@@ -280,7 +236,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -352,8 +308,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.059670616, y: 0.6862086}
-  m_Size: {x: 7.878384, y: 5.888298}
+  m_Offset: {x: 0.053048905, y: 0.39048937}
+  m_Size: {x: 8.254126, y: 6.966828}
   m_Direction: 1
 --- !u!1 &7432086666578649652
 GameObject:

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 948066062667097518}
   - component: {fileID: 4076507022192730762}
   - component: {fileID: 2003578677319833764}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HazardFan
   m_TagString: Superior
   m_Icon: {fileID: 0}
@@ -291,7 +291,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 75ab1aaf8ecada14b905fe17864c85eb, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -335,7 +335,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

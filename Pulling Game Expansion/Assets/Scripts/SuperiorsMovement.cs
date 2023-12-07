@@ -14,7 +14,6 @@ public class SuperiorsMovement : MonoBehaviour
     private float walkCounter;
     public float waitTime;
     private float waitCounter;
-
     private int WalkDirection;
 
     private Rigidbody2D rb;
@@ -23,12 +22,14 @@ public class SuperiorsMovement : MonoBehaviour
     [SerializeField] private Collider2D m_collider;
     [SerializeField] private AudioSource m_audioSource;
     [SerializeField] private AudioClip m_deathClip;
+    [SerializeField] private GameObject m_player;
 
     private float leftBound;
     private float rightBound;
     public float boundNumber;
 
     private bool dead = false;
+    public float maxOffScreenDistance = 2f;
 
 
 
@@ -37,6 +38,7 @@ public class SuperiorsMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         m_reelProperties = gameObject.GetComponent<ReelablePlatform>();
+        m_player = GameObject.FindGameObjectWithTag("Player");
         waitCounter = waitTime;
         walkCounter = walkTime;
         leftBound = this.transform.position.x - boundNumber;
@@ -122,7 +124,7 @@ public class SuperiorsMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Superior" || collision.gameObject.tag == "Respawn")
+        if(collision.gameObject.tag == "Superior")
         {
             GameManager.superiorsDefeated += 1;
             dead = true;
@@ -130,15 +132,32 @@ public class SuperiorsMovement : MonoBehaviour
             m_collider.enabled = false;
             
             m_audioSource.clip = m_deathClip;
-            m_audioSource.loop = false;
-            Debug.Log("AudioClip Loaded!");
+            m_audioSource.loop = false;           
             m_audioSource.Play();
 
             if(dead && !m_audioSource.isPlaying)
             {
                 Destroy(gameObject);
             }           
+        }else if(collision.gameObject.tag == "Respawn")
+        {
+
+            dead = true;
+            m_spriteRenderer.enabled = false;
+            m_collider.enabled = false;
+
+            if (dead)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
+    //private void OnBecameInvisible()
+    //{
+    //    if (gameObject.transform.position.y <= m_player.transform.position.y - maxOffScreenDistance)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
