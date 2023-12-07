@@ -19,10 +19,17 @@ public class SuperiorsMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private ReelablePlatform m_reelProperties;
+    [SerializeField] private SpriteRenderer m_spriteRenderer;
+    [SerializeField] private Collider2D m_collider;
+    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioClip m_deathClip;
 
     private float leftBound;
     private float rightBound;
     public float boundNumber;
+
+    private bool dead = false;
+
 
 
     // Start is called before the first frame update
@@ -118,8 +125,19 @@ public class SuperiorsMovement : MonoBehaviour
         if(collision.gameObject.tag == "Superior" || collision.gameObject.tag == "Respawn")
         {
             GameManager.superiorsDefeated += 1;
+            dead = true;
+            m_spriteRenderer.enabled = false;
+            m_collider.enabled = false;
+            
+            m_audioSource.clip = m_deathClip;
+            m_audioSource.loop = false;
+            Debug.Log("AudioClip Loaded!");
+            m_audioSource.Play();
 
-            Destroy(gameObject); 
+            if(dead && !m_audioSource.isPlaying)
+            {
+                Destroy(gameObject);
+            }           
         }
     }
 
