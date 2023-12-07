@@ -10,9 +10,15 @@ public class PlayerManager : MonoBehaviour
     public GrapplingGun tongueReel;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public AudioSource audioSource;
+    public GameObject deathSpeaker;
+    private bool dead = false;
+    private bool speakerSpawned = false;
+    public float timer = 0f;
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -25,13 +31,20 @@ public class PlayerManager : MonoBehaviour
         if (!tongueGrab.grappleRope.enabled && !tongueReel.grappleRope.enabled)
         {
             animator.SetBool("OpenMouth", false);
-        }      
+        }
+        if (dead && !speakerSpawned)
+        {
+            Instantiate<GameObject>(deathSpeaker);
+            Destroy(gameObject);
+        }
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Superior" || collision.gameObject.tag == "Respawn")
-        {
+        {           
+            dead = true;
             GameManager.gameOver = true;
         }
     }

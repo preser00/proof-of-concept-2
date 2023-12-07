@@ -11,7 +11,11 @@ public class GameManager : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    public AudioSource deathSource;
+    public GameObject deathSpeaker;
+
     private GameObject _player;
+    
 
     //score display takes place in ui obj
     public static int distanceClimbed = 0;
@@ -31,8 +35,10 @@ public class GameManager : MonoBehaviour
 
         _cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
         _audioSource = gameObject.GetComponent<AudioSource>();
-        _player = GameObject.FindGameObjectWithTag("Player"); 
+        _player = GameObject.FindGameObjectWithTag("Player");
 
+        deathSpeaker = GameObject.Find("DeathSpeaker");
+        deathSource = deathSpeaker.GetComponentInChildren<AudioSource>();       
         _audioSource.loop = true; 
         _audioSource.Play(); 
 
@@ -49,6 +55,7 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             SceneManager.LoadScene("GameOver");
+            deathSource.Play();
 
             //if (Input.GetKey(KeyCode.R))
             //{

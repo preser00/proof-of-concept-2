@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6401942709521767099}
   - component: {fileID: 4534727827211822434}
   - component: {fileID: 609864900749932912}
+  - component: {fileID: -9111436120096224298}
   m_Layer: 9
   m_Name: TilePullable5
   m_TagString: Untagged
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6401942709521767099
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -175,8 +176,8 @@ MonoBehaviour:
   grappleGun: {fileID: 0}
   grappleRope: {fileID: 0}
   audioSource: {fileID: 0}
-  m_springJoint2D: {fileID: 0}
-  m_rigidbody: {fileID: 0}
+  m_springJoint2D: {fileID: -9111436120096224298}
+  m_rigidbody: {fileID: 174943308124214497}
   beingReeled: 0
   ReelingCoefficient: 10
 --- !u!114 &609864900749932912
@@ -193,3 +194,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCost: 0
   maxCost: 10
+--- !u!231 &-9111436120096224298
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044486146393751889}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 1
+  m_Distance: 1
+  m_DampingRatio: 0
+  m_Frequency: 1
