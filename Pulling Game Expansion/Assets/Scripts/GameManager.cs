@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
 
     //score display takes place in ui obj
     public static int distanceClimbed = 0;
-    public int highestDistanceClimbed = 0; 
+    public static int highestDistanceClimbed = 0;
+    public static int costsIncurred = 0;
+    public static int superiorsDefeated = 0; 
 
     public GameObject[] roomPositions;
 
@@ -33,6 +35,7 @@ public class GameManager : MonoBehaviour
 
         _audioSource.loop = true; 
         _audioSource.Play(); 
+
     }
 
     private void Update()
@@ -46,11 +49,12 @@ public class GameManager : MonoBehaviour
         if (gameOver)
         {
             SceneManager.LoadScene("GameOver");
-        }
 
-        if (Input.GetKey(KeyCode.R))
-        {
-            SceneManager.LoadScene("JoinTest");
+            //if (Input.GetKey(KeyCode.R))
+            //{
+            //    Debug.Log("R pressed on gameover screen"); 
+            //    SceneManager.LoadScene("JoinTest");
+            //}
         }
     }
 
