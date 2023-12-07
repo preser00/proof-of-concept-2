@@ -27,4 +27,12 @@ public class PlayerManager : MonoBehaviour
             animator.SetBool("OpenMouth", false);
         }      
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Superior" || collision.gameObject.tag == "Respawn")
+        {
+            GameManager.gameOver = true;
+        }
+    }
 }
