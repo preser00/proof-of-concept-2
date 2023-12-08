@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 351356043673884318}
   - component: {fileID: 5945781872456285536}
   m_Layer: 0
-  m_Name: InteractableSpawnPoint
+  m_Name: InteracGuarantee
   m_TagString: Untagged
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -45,9 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objects:
-  - {fileID: 1749819966879776233, guid: 6e1a3f83b13a1684bb74077cc00fe3ef, type: 3}
-  - {fileID: 1749819966879776233, guid: 6e1a3f83b13a1684bb74077cc00fe3ef, type: 3}
-  - {fileID: 1749819966879776233, guid: 6e1a3f83b13a1684bb74077cc00fe3ef, type: 3}
   - {fileID: 8130871418753675105, guid: ea01219fd83cc554a955c333630a51fb, type: 3}
   - {fileID: 4860637201248639623, guid: 43f5e6a0fb2fb544d88563a5bfee10d8, type: 3}
   - {fileID: 4860637201248639623, guid: b19f1686c46a23f428da50a6440aff95, type: 3}

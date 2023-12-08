@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: -1721675411345379915}
   - component: {fileID: -2750434120087185995}
   m_Layer: 10
-  m_Name: TestBall2
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,9 +1038,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.6414989}
   serializedVersion: 2
-  m_Radius: 2.56
+  m_Radius: 3.201499
 --- !u!114 &5010175063267937943
 MonoBehaviour:
   m_ObjectHideFlags: 0

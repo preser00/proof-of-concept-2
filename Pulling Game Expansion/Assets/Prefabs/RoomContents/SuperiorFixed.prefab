@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -1320150160218176594}
   - component: {fileID: 3914237345758014660}
   m_Layer: 8
-  m_Name: Superior Rect
+  m_Name: SuperiorFixed
   m_TagString: Superior
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,8 +308,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.053048905, y: 0.39048937}
-  m_Size: {x: 8.254126, y: 6.966828}
+  m_Offset: {x: 0.13530539, y: 0.5809284}
+  m_Size: {x: 8.418687, y: 6.4844236}
   m_Direction: 1
 --- !u!1 &7432086666578649652
 GameObject:
