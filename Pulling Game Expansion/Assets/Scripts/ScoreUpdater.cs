@@ -15,6 +15,6 @@ public class ScoreUpdater : MonoBehaviour
 
     private void Update()
     {
-        textmesh.text = GameManager.distanceClimbed.ToString() + " ft closer to VENGEANCE \n\n$" + GameManager.costsIncurred + " in damages wreaked to ELDrCO\n\n" + GameManager.superiorsDefeated + " superiors dispatched"; 
+        textmesh.text = GameManager.distanceClimbed.ToString() + " ft closer to VENGEANCE \n$" + GameManager.costsIncurred + " in damages wreaked to ELDrCO\n" + GameManager.superiorsDefeated + " superiors dispatched"; 
     }
 }

@@ -24,13 +24,11 @@ public class LevelGeneration : MonoBehaviour
 
     public void Start()
     {
-        //spawn an empty room below so player doesn't fall into void. this is room 0 in activerooms
-        CreateNewRoom("below");
 
-        //get the position of the starting room & append it into activeroompos array 
-        GameObject startingRoom = GameObject.FindGameObjectWithTag("Spawner");
-        activeRooms.Add(startingRoom); 
-        activeRoomPositions.Add(startingRoom.transform); 
+        ////get the position of the starting room & append it into activeroompos array 
+        //GameObject startingRoom = GameObject.FindGameObjectWithTag("Spawner");
+        //activeRooms.Add(startingRoom); 
+        //activeRoomPositions.Add(startingRoom.transform); 
 
         Debug.Log(activeRoomPositions[0]);
         currentRoomIndex = 0; 
