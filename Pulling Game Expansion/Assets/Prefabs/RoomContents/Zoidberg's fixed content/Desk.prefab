@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8458544838656243942}
   m_Layer: 8
   m_Name: Desk
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_springJoint2D: {fileID: 779798249628230374}
   m_rigidbody: {fileID: 5378273219551057994}
   beingReeled: 0
-  ReelingCoefficient: 3
+  ReelingCoefficient: 5
 --- !u!231 &779798249628230374
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -312,3 +312,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCost: 100
   maxCost: 300
+  clip: {fileID: 8300000, guid: ef901b697c622634d834222cd63cbe76, type: 3}
+  trackingCooldown: 1.5

@@ -11,6 +11,8 @@ public class Interactable : MonoBehaviour
 
     float locationTrackingTimer;
     float locationTrackingSeconds;
+    //AudioSource audioSource;
+    public AudioClip clip;
 
     [SerializeField]
     float trackingCooldown = 1.5f; 
@@ -20,7 +22,9 @@ public class Interactable : MonoBehaviour
 
     private void Start()
     {
-        lastRecordedPosition = transform.position; 
+        lastRecordedPosition = transform.position;
+        //audioSource = gameObject.GetComponent<AudioSource>();
+        //clip = gameObject.GetComponent<AudioClip>();
     }
 
     private void Update()
@@ -57,6 +61,8 @@ public class Interactable : MonoBehaviour
             {
                 int cost = Random.Range(minCost, maxCost);
                 GameManager.costsIncurred += cost;
+                AudioSource.PlayClipAtPoint(clip, gameObject.transform.position);
+               
             }
 
             Destroy(this.gameObject); 

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("GameOver");
             deathSource.Play();
+            _audioSource.Stop();
 
             //if (Input.GetKey(KeyCode.R))
             //{
