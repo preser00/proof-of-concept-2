@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6210902758886468821}
   - component: {fileID: 3769623730373093581}
   m_Layer: 9
-  m_Name: Superior
+  m_Name: OLDSuperior
   m_TagString: Superior
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
