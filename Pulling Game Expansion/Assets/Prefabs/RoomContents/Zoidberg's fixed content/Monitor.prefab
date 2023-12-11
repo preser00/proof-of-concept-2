@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 8458544838656243942}
   m_Layer: 8
   m_Name: Monitor
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,3 +312,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCost: 200
   maxCost: 500
+  clip: {fileID: 8300000, guid: d1e6a449f4178ca469309f9955bd39ce, type: 3}
+  trackingCooldown: 1.5

@@ -60,7 +60,7 @@ public class ReelablePlatform : MonoBehaviour
             //Debug.Log(m_rigidbody.velocity);
             audioSource.Pause();
             played = false;
-          if(m_rigidbody.velocity != new Vector2(0, 0)) 
+          if(m_rigidbody.velocity != new Vector2(0, 0) && gameObject.tag != "Interactable") 
           {
                 m_rigidbody.velocity *= 0.99f;
           }          
