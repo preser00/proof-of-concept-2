@@ -2496,6 +2496,7 @@ MonoBehaviour:
   - {fileID: 5767001607225183835, guid: 6675fadc7d4be1046913b71f4a86dfb0, type: 3}
   - {fileID: 5767001607225183835, guid: a28ff077594a5b94b844839437f99f26, type: 3}
   - {fileID: 5767001607225183835, guid: fdeaae9f0deb20c489fa332f7afe9c8f, type: 3}
+  - {fileID: 5767001607225183835, guid: 2462808cbcbc5b54f857b4582ee18816, type: 3}
   currentRoomIndex: 0
   roomHeight: 17
   room:
