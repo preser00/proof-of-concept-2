@@ -47,7 +47,7 @@ public class LevelGeneration : MonoBehaviour
         Debug.Log("active room position # = " + activeRoomPositions.Count); 
 
 
-        if(aboveOrBelow == "below") // the only case where i create a room below is at the beginning, so i just use aRP list directly
+        if(aboveOrBelow == "below") // currently not using this, below room is manually placed into scene 
         {
             Debug.Log("create room below"); 
             GameObject newRoom = Instantiate(roomTypes[randRoomType], new Vector3(0, activeRoomPositions[0].position.y - roomHeight), Quaternion.identity);
