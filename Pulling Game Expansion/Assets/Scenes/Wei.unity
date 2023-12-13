@@ -2510,6 +2510,18 @@ PrefabInstance:
       propertyPath: nullReticle
       value: 
       objectReference: {fileID: 21300000, guid: be9f8feb8d6355845af5d8397e93347c, type: 3}
+    - target: {fileID: 2097624653533101160, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097624653533101160, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097624653533101160, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5258063107827525509, guid: 657f46119490c0641992ef7b39c8a6f7, type: 3}
       propertyPath: m_Constraints
       value: 4
