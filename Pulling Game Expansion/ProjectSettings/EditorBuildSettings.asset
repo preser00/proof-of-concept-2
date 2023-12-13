@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 1d552f28c41be3f449a2ab1971515168
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ZoidbergII.unity
     guid: 23f7755dbdfba26449f471ec78f274dd
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/JoinTest.unity
     guid: 4e46da2fb36c2e64c8e2888b6b7d77db
   m_configObjects: {}
