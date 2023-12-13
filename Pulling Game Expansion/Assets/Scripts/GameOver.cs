@@ -15,7 +15,8 @@ public class GameOver : MonoBehaviour
             GameManager.distanceClimbed = 0; 
             GameManager.highestDistanceClimbed = 0;
 
-            GameManager.costsIncurred = 0; 
+            GameManager.costsIncurred = 0;
+            GameManager.superiorsDefeated = 0; 
 
             SceneManager.LoadScene("Wei");
         }
