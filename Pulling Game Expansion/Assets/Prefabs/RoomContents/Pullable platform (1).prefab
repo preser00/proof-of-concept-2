@@ -148,7 +148,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_springJoint2D: {fileID: 6404591742289328}
   m_rigidbody: {fileID: 4640907112470462236}
   beingReeled: 0
-  ReelingCoefficient: 10
+  ReelingCoefficient: 5
 --- !u!231 &6404591742289328
 SpringJoint2D:
   m_ObjectHideFlags: 0
