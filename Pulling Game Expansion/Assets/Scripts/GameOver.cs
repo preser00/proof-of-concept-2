@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+
     void Update()
     {
         if (Input.GetKey(KeyCode.R))

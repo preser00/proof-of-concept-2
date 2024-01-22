@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Atkinson-Hyperlegible-Regular-102 SDF
+  m_Name: Atkinson Scores
   m_EditorClassIdentifier: 
-  hashCode: 112080580
+  hashCode: 1124888080
   material: {fileID: 4719331573445770411}
-  materialHashCode: -1805441180
+  materialHashCode: 376210352
   m_Version: 1.1.0
   m_SourceFontFileGUID: bca07f12e2c6fd9439dcd21223722cf2
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: bca07f12e2c6fd9439dcd21223722cf2, type: 3}
@@ -1863,7 +1863,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0.3
+    - _OutlineWidth: 0
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.9
@@ -1892,10 +1892,10 @@ Material:
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
-    - _FaceColor: {r: 0.86415094, g: 0.63751507, b: 0.7481024, a: 1}
+    - _FaceColor: {r: 0.054275513, g: 0.1627185, b: 0.4566037, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0.8490566, g: 0.056069657, b: 0.31979716, a: 1}
+    - _OutlineColor: {r: 0, g: 0.24418826, b: 0.6981132, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
