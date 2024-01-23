@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +23,11 @@ public class GameManager : MonoBehaviour
     public static int distanceClimbed = 0;
     public static int highestDistanceClimbed = 0;
     public static int costsIncurred = 0;
-    public static int superiorsDefeated = 0; 
+    public static int superiorsDefeated = 0;
+
+    public static int highScoreDistance = 0;
+    public static int highScoreCosts = 0;
+    public static int highScoreSuperiors = 0; 
 
     public GameObject[] roomPositions;
 
@@ -40,8 +46,7 @@ public class GameManager : MonoBehaviour
         deathSpeaker = GameObject.Find("DeathSpeaker");
         deathSource = deathSpeaker.GetComponentInChildren<AudioSource>();       
         _audioSource.loop = true; 
-        _audioSource.Play(); 
-
+        _audioSource.Play();
     }
 
     private void Update()
@@ -51,9 +56,14 @@ public class GameManager : MonoBehaviour
             distanceClimbed = highestDistanceClimbed + (int)(_player.transform.position.y - highestDistanceClimbed);
             highestDistanceClimbed = (int)_player.transform.position.y;
         }
+             
 
         if (gameOver)
         {
+            if(highestDistanceClimbed > highScoreDistance) { highScoreDistance = highestDistanceClimbed; }
+            if(costsIncurred > highScoreCosts) { highScoreCosts = costsIncurred; }
+            if(superiorsDefeated > highScoreSuperiors) { highScoreSuperiors = superiorsDefeated; }
+
             SceneManager.LoadScene("GameOver");
             deathSource.Play();
             _audioSource.Stop();
